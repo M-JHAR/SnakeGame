@@ -9,7 +9,7 @@ private:
 	sf::Vector2f m_Position;
 	sf::RectangleShape m_Shape;
 
-	float m_Speed = 200.f;
+	float m_Speed = 400.f;
 	bool m_MovingLeft = false;
 	bool m_MovingRight = false;
 	bool m_MovingUp = false;

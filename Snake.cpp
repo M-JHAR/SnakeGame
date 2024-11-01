@@ -62,9 +62,6 @@ const bool Snake::isMovingRight()
 	return m_MovingRight;
 }
 
-
-
-
 void Snake::update(sf::Time dt)
 {
 	if (m_MovingUp)

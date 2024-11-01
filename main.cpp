@@ -1,5 +1,6 @@
 #include "Snake.h"
 #include "Apple.h"
+#include "SnakeTail.h"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -7,7 +8,9 @@
 
 int main()
 {
-
+	const int NUM_SNAKE_TAILS = 20;
+	int tailsNum = 0;
+	SnakeTail snakeTails[NUM_SNAKE_TAILS];
 
 	sf::VideoMode vm(1920, 1080);
 
@@ -76,12 +79,19 @@ int main()
 			score++;
 			apple.updatePosition(score); // this score is used to seed the random pos
 
+			SnakeTail st(&snake);
+			snakeTails[tailsNum] = st;
+			tailsNum++;
+
 		}
 
 		//UPDATE GAMEOBJECTS
 		sf::Time dt = clock.restart();
 		snake.update(dt);
-
+		for (int i = 0; i < tailsNum; i++)
+		{
+			snakeTails[i].update(i, dt);
+		}
 		std::stringstream ss;
 		ss << "Score : " << score;
 		textScore.setString(ss.str());
@@ -91,6 +101,11 @@ int main()
 		window.clear();
 		window.draw(snake.getShape());
 		window.draw(apple.getSprite());
+
+		for (int i = 0; i < tailsNum; i++)
+		{
+			window.draw(snakeTails[i].getShape());
+		}
 		window.draw(textScore);
 		window.display();
 	}
