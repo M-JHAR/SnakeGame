@@ -9,12 +9,12 @@ private:
 	sf::Vector2f m_Position;
 public:
 	Apple(const sf::Texture& texture);
-
-	void updatePosition();
+	sf::FloatRect getPosition() const;
+	void updatePosition(int seed);
 
 	const sf::Sprite& getSprite();
 
-	const sf::Vector2f getRandomPosition();
+	const sf::Vector2f getRandomPosition(int seed);
 };
 
 

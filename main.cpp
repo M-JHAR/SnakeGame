@@ -6,6 +6,8 @@
 
 int main()
 {
+	int score{ 0 };
+
 	sf::VideoMode vm(1920, 1080);
 
 	sf::RenderWindow window(vm, "SnakeGame", sf::Style::Fullscreen);
@@ -59,7 +61,12 @@ int main()
 
 		}
 
-		//if()
+		if (apple.getPosition().intersects(snake.getPosition()))
+		{
+			score++;
+			apple.updatePosition(score); // this score is used to seed the random pos
+
+		}
 
 		//UPDATE GAMEOBJECTS
 		sf::Time dt = clock.restart();
