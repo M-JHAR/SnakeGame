@@ -1,4 +1,5 @@
 #include "Snake.h"
+#include "Apple.h"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -8,6 +9,11 @@ int main()
 	sf::VideoMode vm(1920, 1080);
 
 	sf::RenderWindow window(vm, "SnakeGame", sf::Style::Fullscreen);
+
+	sf::Texture textureApple;
+	textureApple.loadFromFile("graphics/apple.png");
+
+	Apple apple(textureApple);
 
 	Snake snake(1920.f / 2, 10);
 
@@ -53,7 +59,7 @@ int main()
 
 		}
 
-
+		//if()
 
 		//UPDATE GAMEOBJECTS
 		sf::Time dt = clock.restart();
@@ -63,7 +69,7 @@ int main()
 		//DRAW GAMEOBJECTS
 		window.clear();
 		window.draw(snake.getShape());
-
+		window.draw(apple.getSprite());
 		window.display();
 	}
 
