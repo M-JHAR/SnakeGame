@@ -3,10 +3,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <sstream>
 
 int main()
 {
-	int score{ 0 };
+
 
 	sf::VideoMode vm(1920, 1080);
 
@@ -19,6 +20,15 @@ int main()
 
 	Snake snake(1920.f / 2, 10);
 
+	int score{ 0 };
+	sf::Font font;
+	sf::Text textScore;
+	std::cerr << font.loadFromFile("fonts/DS-DIGIT.ttf");
+	textScore.setPosition(20.f, 20.f);
+	textScore.setFont(font);
+	textScore.setCharacterSize(75);
+	textScore.setFillColor(sf::Color::White);
+	textScore.setString("Score : 0");
 
 	sf::Clock clock;
 
@@ -72,11 +82,16 @@ int main()
 		sf::Time dt = clock.restart();
 		snake.update(dt);
 
+		std::stringstream ss;
+		ss << "Score : " << score;
+		textScore.setString(ss.str());
+
 
 		//DRAW GAMEOBJECTS
 		window.clear();
 		window.draw(snake.getShape());
 		window.draw(apple.getSprite());
+		window.draw(textScore);
 		window.display();
 	}
 
